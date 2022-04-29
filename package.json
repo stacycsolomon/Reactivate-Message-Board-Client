@@ -1,6 +1,6 @@
 {
-  "homepage": "http://Reactivate-Team.github.io/Reactivate-Message-Board",
-  "name": "Reactivate-Message-Board",
+  "homepage": "http://Reactivate-Team.github.io/Reactivate-Message-Board-Client",
+  "name": "Reactivate-Message-Board-Client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
