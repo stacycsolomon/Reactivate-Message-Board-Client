@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
@@ -5,8 +6,18 @@ import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
   <Fragment>
-    <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
-    <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
+    <NavLink to='/change-password' className='nav-link'>
+			Change Password
+    </NavLink>
+    <NavLink to='/sign-out' className='nav-link'>
+			Sign Out
+    </NavLink>
+    <NavLink to='/create-post' className='nav-link'>
+			Create Post
+    </NavLink>
+    <NavLink to='/posts' className='nav-link'>
+			Explore Posts
+    </NavLink>
   </Fragment>
 )
 
