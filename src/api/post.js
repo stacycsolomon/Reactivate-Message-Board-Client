@@ -23,3 +23,14 @@ export const indexPosts = (user) => {
     }
   })
 }
+
+export const updatePost = (data, id, user) => {
+  return axios({
+    url: apiUrl + '/posts/' + id,
+    method: 'patch',
+    data: { post: data },
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
