@@ -34,3 +34,23 @@ export const updatePost = (data, id, user) => {
     }
   })
 }
+
+export const showPost = (id, user) => {
+  return axios({
+    method: 'GET',
+    url: apiUrl + '/posts/' + id,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
+export const deletePost = (id, user) => {
+  return axios({
+    method: 'DELETE',
+    url: apiUrl + '/posts/' + id,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
