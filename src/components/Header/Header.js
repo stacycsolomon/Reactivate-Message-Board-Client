@@ -18,6 +18,9 @@ const authenticatedOptions = (
     <NavLink to='/posts' className='nav-link'>
 			Explore Posts
     </NavLink>
+    <NavLink to='/myposts' className='nav-link'>
+      My Feed
+    </NavLink>
   </Fragment>
 )
 
