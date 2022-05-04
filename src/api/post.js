@@ -24,6 +24,16 @@ export const indexPosts = (user) => {
   })
 }
 
+export const indexOwnedPosts = (user) => {
+  return axios({
+    method: 'GET',
+    url: apiUrl + '/posts/',
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
 export const updatePost = (data, id, user) => {
   return axios({
     url: apiUrl + '/posts/' + id,
