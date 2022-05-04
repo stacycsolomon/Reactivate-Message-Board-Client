@@ -15,9 +15,20 @@ class IndexOwnedPost extends Component {
     const { user, msgAlert } = this.props
 
     indexOwnedPosts(user)
-      .then((res) => this.setState({ posts: res.data.posts }))
-    //   .then((res) => {
-    //     this.props.state.filter((post) => {this.props.post.owner == this.props.user._id})
+      .then((res) => {
+        res.data.posts.filter((post) => {
+          if (post.owner === user._id) {
+            return true
+          } else {
+            return false
+          }
+        })
+      })
+      .then((filteredRes) => {
+        console.log(filteredRes)
+        console.log('IN INDEXED OWNED POST')
+      })
+      .then((filteredRes) => this.setState({ posts: filteredRes }))
       .then(() => {
         msgAlert({
           heading: 'Index My Posts Success',
