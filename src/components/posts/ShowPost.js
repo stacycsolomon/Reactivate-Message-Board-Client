@@ -74,14 +74,20 @@ class ShowPost extends Component {
           </>
         )
       }
+      // console.log(this.state.post.owner)
+
+      // console.log('owner:' + owner)
+      // console.log(user)
       // return (<p>{commentsJSX}</p>)
       return (
         <>
           <h3>Show a Post</h3>
+
           <h4>{title}</h4>
           <h5>{text}</h5>
           <h6>{date.slice(0, 10)}</h6>
           {/* <p>{comments[0].title}</p> */}
+          <h3>Comments: </h3>
           {commentsJSX}
 
           {user._id === owner && (
@@ -91,12 +97,12 @@ class ShowPost extends Component {
                 onClick={() => history.push(`/posts/${match.params.id}/edit`)}>
 								Update
               </Button>
-              <Button
-                onClick={() => history.push(`/posts/${match.params.id}/create-comment`)}>
-								Add Comment
-              </Button>
             </>
           )}
+          <Button
+            onClick={() => history.push(`/posts/${match.params.id}/create-comment`)}>
+						Add Comment
+          </Button>
         </>
       )
     }
