@@ -14,6 +14,7 @@ import CreatePost from './components/posts/CreatePost'
 import IndexPost from './components/posts/IndexPost'
 import UpdatePost from './components/posts/UpdatePost'
 import ShowPost from './components/posts/ShowPost'
+import CreateComment from './components/comments/CreateComment'
 
 class App extends Component {
   constructor (props) {
@@ -104,16 +105,18 @@ class App extends Component {
           <AuthenticatedRoute
             user={user}
             path='/posts/:id/edit'
-            render={() => (
-              <UpdatePost msgAlert={this.msgAlert} user={user}/>
-            )}
+            render={() => <UpdatePost msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
             user={user}
-            exact path='/posts/:id'
-            render={() => (
-              <ShowPost msgAlert={this.msgAlert} user={user} />
-            )}
+            exact
+            path='/posts/:id'
+            render={() => <ShowPost msgAlert={this.msgAlert} user={user} />}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path='/posts/:id/create-comment'
+            render={() => <CreateComment msgAlert={this.msgAlert} user={user} />}
           />
         </main>
       </Fragment>
