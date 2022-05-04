@@ -64,13 +64,25 @@ class ShowPost extends Component {
       const { title, text, date, comments, owner } = this.state.post
       console.log(comments)
       const { user, history, match } = this.props
+
+      const commentsJSX = []
+      for (let i = 0; i < comments.length; i++) {
+        commentsJSX.push(
+          <>
+            <p>{comments[i].title}</p>
+            <p>{comments[i].content}</p>
+          </>
+        )
+      }
+      // return (<p>{commentsJSX}</p>)
       return (
         <>
           <h3>Show a Post</h3>
           <h4>{title}</h4>
-          <p>{text}</p>
-          <p>{date}</p>
-          {/* render comments that exist for each post so they show up on the screen */}
+          <h5>{text}</h5>
+          <h6>{date.slice(0, 10)}</h6>
+          {/* <p>{comments[0].title}</p> */}
+          {commentsJSX}
 
           {user._id === owner && (
             <>
