@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { deletePost, showPost } from '../../api/post'
@@ -58,8 +59,10 @@ class ShowPost extends Component {
       if (this.state.post === null) {
         return 'Loading...'
       }
+      console.log('comment was added')
 
-      const { title, text, date, owner } = this.state.post
+      const { title, text, date, comments, owner } = this.state.post
+      console.log(comments)
       const { user, history, match } = this.props
       return (
         <>
@@ -67,11 +70,19 @@ class ShowPost extends Component {
           <h4>{title}</h4>
           <p>{text}</p>
           <p>{date}</p>
+          {/* render comments that exist for each post so they show up on the screen */}
 
           {user._id === owner && (
             <>
               <Button onClick={this.handleDelete}>Delete</Button>
-              <Button onClick={() => history.push(`/posts/${match.params.id}/edit`)}>Update</Button>
+              <Button
+                onClick={() => history.push(`/posts/${match.params.id}/edit`)}>
+								Update
+              </Button>
+              <Button
+                onClick={() => history.push(`/posts/${match.params.id}/create-comment`)}>
+								Add Comment
+              </Button>
             </>
           )}
         </>
