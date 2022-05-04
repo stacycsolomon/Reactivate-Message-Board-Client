@@ -16,17 +16,12 @@ class IndexOwnedPost extends Component {
 
     indexOwnedPosts(user)
       .then((res) => {
-        res.data.posts.filter((post) => {
-          if (post.owner === user._id) {
-            return true
-          } else {
-            return false
-          }
-        })
-      })
-      .then((filteredRes) => {
-        console.log(filteredRes)
-        console.log('IN INDEXED OWNED POST')
+        console.log(res)
+        console.log(res.data.posts)
+        console.log(user)
+        return res.data.posts.filter((post) =>
+          post.owner._id === user._id
+        )
       })
       .then((filteredRes) => this.setState({ posts: filteredRes }))
       .then(() => {
@@ -47,6 +42,7 @@ class IndexOwnedPost extends Component {
 
   render () {
     const { posts } = this.state
+    console.log(posts)
 
     if (posts === null) {
       return 'Loading...'

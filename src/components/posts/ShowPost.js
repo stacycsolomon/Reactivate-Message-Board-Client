@@ -67,30 +67,28 @@ class ShowPost extends Component {
 
       const commentsJSX = []
       for (let i = 0; i < comments.length; i++) {
+        console.log(comments[i])
         commentsJSX.push(
           <>
-            <p>{comments[i].title}</p>
+            <p>{comments[i].title} by {owner.username}</p>
+            {/* line above needs fixing */}
             <p>{comments[i].content}</p>
           </>
         )
       }
-      // console.log(this.state.post.owner)
+      console.log(this.state.post.owner)
 
-      // console.log('owner:' + owner)
-      // console.log(user)
-      // return (<p>{commentsJSX}</p>)
       return (
         <>
           <h3>Show a Post</h3>
 
-          <h4>{title}</h4>
+          <h4>{title} by {owner.username}</h4>
           <h5>{text}</h5>
           <h6>{date.slice(0, 10)}</h6>
-          {/* <p>{comments[0].title}</p> */}
-          <h3>Comments: </h3>
+          <h3>Comments:</h3>
           {commentsJSX}
 
-          {user._id === owner && (
+          {user._id === owner._id && (
             <>
               <Button onClick={this.handleDelete}>Delete</Button>
               <Button
