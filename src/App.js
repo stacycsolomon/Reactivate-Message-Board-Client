@@ -1,4 +1,3 @@
-/* eslint-disable no-tabs */
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -16,6 +15,7 @@ import UpdatePost from './components/posts/UpdatePost'
 import ShowPost from './components/posts/ShowPost'
 import CreateComment from './components/comments/CreateComment'
 import IndexOwnedPost from './components/posts/IndexOwnedPost'
+import UpdateComment from './components/comments/UpdateComment'
 
 class App extends Component {
   constructor (props) {
@@ -117,13 +117,25 @@ class App extends Component {
           <AuthenticatedRoute
             user={user}
             path='/posts/:id/create-comment'
-            render={() => <CreateComment msgAlert={this.msgAlert} user={user} />}
+            render={() => (
+              <CreateComment msgAlert={this.msgAlert} user={user} />
+            )}
           />
           <AuthenticatedRoute
             user={user}
             exact
             path='/myposts'
-            render={() => <IndexOwnedPost msgAlert={this.msgAlert} user={user} />}
+            render={() => (
+              <IndexOwnedPost msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path='/posts/:id/comments/:commentId/edit'
+            render={() => (
+              <UpdateComment msgAlert={this.msgAlert} user={user} />
+            )}
           />
         </main>
       </Fragment>

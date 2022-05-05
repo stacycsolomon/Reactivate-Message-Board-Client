@@ -19,7 +19,15 @@ class UpdatePost extends Component {
     const { match, user, msgAlert } = this.props
 
     showPost(match.params.id, user)
-      .then(res => this.setState({ title: res.data.post.title, text: res.data.post.text, date: res.data.post.date }))
+      .then((res) => console.log(res.data.post))
+      .then((res) =>
+        this.setState({
+          title: res.data.post.title,
+          text: res.data.post.text,
+          date: res.data.post.date
+        })
+      )
+
       .then(() => {
         msgAlert({
           heading: 'Show post success',
@@ -27,7 +35,7 @@ class UpdatePost extends Component {
           variant: 'success'
         })
       })
-      .catch(error => {
+      .catch((error) => {
         msgAlert({
           heading: 'Show failed',
           message: 'Error message: ' + error.message,

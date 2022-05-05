@@ -104,11 +104,14 @@ class ShowPost extends Component {
           </div>
         )
       }
+      // for every comment, we can add a link and button to redirect to a specific page with that post & comment only. comments/:commentId
+      // try to link to a page with a specific post, go to a specific route
+      // post --> app, comments ---> child
+
       console.log(this.state.post.owner)
 
       return (
         <div style={postStyles}>
-          {/* <h3>Show a Post</h3> */}
 
           <h4><span style={{ 'text-decoration': 'underline' }}>{title}</span> <br/>  <span style={titleSpanStyle}>by: {owner.username}</span></h4>
           <p>{text}</p>
@@ -119,13 +122,19 @@ class ShowPost extends Component {
               <Button style={buttonStyle} onClick={this.handleDelete}>Delete</Button>
               <Button style={buttonStyle}
                 onClick={() => history.push(`/posts/${match.params.id}/edit`)}>
-								Update
+								Update Post
               </Button>
             </>
           )}
           <Button style={buttonStyle}
             onClick={() => history.push(`/posts/${match.params.id}/create-comment`)}>
 						Add Comment
+          </Button>
+          <Button
+            onClick={() =>
+              history.push(
+                `/posts/${match.params.id}/comments/${match.params.commentId}/edit`)}>
+						Update Comment
           </Button>
           <h3>Comments:</h3>
           {commentsJSX}
