@@ -2,7 +2,6 @@
 /* eslint-disable no-tabs */
 import React, { Component } from 'react'
 import { createComment } from '../../api/comment'
-// import { showPost } from '../../api/post'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { withRouter } from 'react-router-dom'
@@ -18,34 +17,6 @@ class CreateComment extends Component {
     }
   }
 
-  componentDidMount () {
-    // this.setState = { id: this.props.match.params.id }
-    // const { match, user, msgAlert } = this.props
-
-    //     showPost(match.params.id, user)
-    //       .then((res) =>
-    //         this.setState({
-    //           title: res.data.post.title,
-    //           text: res.data.post.text,
-    //           date: res.data.post.date
-    //         })
-    //       )
-    //       .then(() => {
-    //         msgAlert({
-    //           heading: 'Show post success',
-    //           message: 'Woot success',
-    //           variant: 'success'
-    //         })
-    //       })
-    //       .catch((error) => {
-    //         msgAlert({
-    //           heading: 'Show failed',
-    //           message: 'Error message: ' + error.message,
-    //           variant: 'danger'
-    //         })
-    //       })
-  }
-
 	handleChange = (event) =>
 	  this.setState({
 	    [event.target.name]: event.target.value
@@ -56,7 +27,8 @@ class CreateComment extends Component {
 
 	  const { user, msgAlert, history, match } = this.props
 
-	  createComment(this.state, match.params.id, user)
+	  // createComment(this.state, match.params.id, user)
+	  createComment(this.state, user)
 	    .then(() => history.push('/posts/' + match.params.id))
 	    .then(() => {
 	      msgAlert({
