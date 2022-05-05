@@ -70,8 +70,7 @@ class ShowPost extends Component {
         console.log(comments[i])
         commentsJSX.push(
           <>
-            <p>{comments[i].title} by {owner.username}</p>
-            {/* line above needs fixing */}
+            <p>{comments[i].title} by {comments[i]?.username}</p>
             <p>{comments[i].content}</p>
           </>
         )
