@@ -24,3 +24,16 @@ export const updateComment = (data, id, user, commentId) => {
     }
   })
 }
+
+export const deleteComment = (data, commentId, user) => {
+  return axios({
+    method: 'DELETE',
+    url: apiUrl + '/comments/' + commentId,
+    data: {
+      comment: { postId: data }
+    },
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}

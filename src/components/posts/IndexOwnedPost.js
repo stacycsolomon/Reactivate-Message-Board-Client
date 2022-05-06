@@ -16,9 +16,6 @@ class IndexOwnedPost extends Component {
 
     indexOwnedPosts(user)
       .then((res) => {
-        console.log(res)
-        console.log(res.data.posts)
-        console.log(user)
         return res.data.posts.filter((post) =>
           post.owner._id === user._id
         )
