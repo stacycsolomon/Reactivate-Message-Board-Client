@@ -26,7 +26,6 @@ class UpdateComment extends Component {
           title: res.data.post.comments.title,
           comment: res.data.comments,
           commentId: res.data.post.comments[0]._id
-          // figure out how to update any comment in the array using filter method, not just the first comment
         })
       )
       .then(() => {
