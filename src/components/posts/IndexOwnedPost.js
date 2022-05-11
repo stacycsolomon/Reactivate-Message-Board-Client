@@ -39,7 +39,6 @@ class IndexOwnedPost extends Component {
 
   render () {
     const { posts } = this.state
-    console.log(posts)
 
     if (posts === null) {
       return 'Loading...'

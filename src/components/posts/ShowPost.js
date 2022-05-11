@@ -116,7 +116,6 @@ class ShowPost extends Component {
       margin: '4px'
     }
     const commentsJSX = []
-    console.log(comments)
 
     for (let i = 0; i < comments.length; i++) {
       if (user._id === comments[i].owner) {
@@ -131,6 +130,14 @@ class ShowPost extends Component {
               style={buttonStyle}
               onClick={() => this.handleDeleteComment(comments[i]._id)}>
               Delete Comment
+            </Button>
+            <Button
+              onClick={() =>
+                history.push(
+                  `/posts/${match.params.id}/comments/${comments[i]._id}/edit`
+                )
+              }>
+					Update Comment
             </Button>
           </div>
         )
@@ -174,14 +181,6 @@ class ShowPost extends Component {
             history.push(`/posts/${match.params.id}/create-comment`)
           }>
           Add Comment
-        </Button>
-        <Button
-          onClick={() =>
-            history.push(
-              `/posts/${match.params.id}/comments/${match.params.commentId}/edit`
-            )
-          }>
-          Update Comment
         </Button>
         <h3>Comments:</h3>
         {commentsJSX}

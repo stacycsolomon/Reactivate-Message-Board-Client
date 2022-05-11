@@ -5,9 +5,11 @@ Users are able to create an account, share their thoughts and ideas, get the lat
 
 ## Deployed Application
 
-Please visit the following link to the application : git hub pages link to production
+[Link](https://reactivate-team.github.io/Reactivate-Message-Board-Client/) to deployed application
 
-Link to API repository: https://github.com/Reactivate-Team/Reactivate-Message-Board-API
+[Link](https://github.com/Reactivate-Team/Reactivate-Message-Board-API) to API repository
+
+[Link](https://murmuring-brook-35134.herokuapp.com/) to API remote server
 
 ## User Stories
 * As an unregistered user, I would like to sign up with email and password.

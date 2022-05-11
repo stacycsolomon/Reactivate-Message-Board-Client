@@ -13,7 +13,7 @@ class UpdateComment extends Component {
       title: '',
       content: '',
       postId: props.match.params.id,
-      commentId: ''
+      commentId: props.match.params.commentId
     }
   }
 
@@ -24,8 +24,7 @@ class UpdateComment extends Component {
       .then((res) =>
         this.setState({
           title: res.data.post.comments.title,
-          comment: res.data.comments,
-          commentId: res.data.post.comments[0]._id
+          comment: res.data.comments
         })
       )
       .then(() => {
@@ -53,7 +52,7 @@ class UpdateComment extends Component {
        event.preventDefault()
 
        const { user, msgAlert, history, match } = this.props
-       updateComment(this.state, match.params.id, user, this.state.commentId)
+       updateComment(this.state, match.params.id, user, match.params.commentId)
          .then(() => history.push('/posts/' + match.params.id))
          .then(() => {
            msgAlert({
