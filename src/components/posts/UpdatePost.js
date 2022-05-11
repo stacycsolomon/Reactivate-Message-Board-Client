@@ -19,7 +19,6 @@ class UpdatePost extends Component {
     const { match, user, msgAlert } = this.props
 
     showPost(match.params.id, user)
-      .then((res) => console.log(res.data.post))
       .then((res) =>
         this.setState({
           title: res.data.post.title,
