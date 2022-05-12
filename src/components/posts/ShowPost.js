@@ -36,146 +36,157 @@ class ShowPost extends Component {
       })
   }
 
-	handleDelete = () => {
-	  const { match, user, msgAlert, history } = this.props
+  handleDelete = () => {
+    const { match, user, msgAlert, history } = this.props
 
-	  deletePost(match.params.id, user)
-	    .then(() => history.push('/posts'))
-	    .then(() => {
-	      msgAlert({
-	        heading: 'Deleted post successfully',
-	        message: 'Post deleted',
-	        variant: 'success'
-	      })
-	    })
-	    .catch((error) => {
-	      msgAlert({
-	        heading: 'Failed to delete post!',
-	        message: 'Delete error: ' + error.message,
-	        variant: 'danger'
-	      })
-	    })
-	}
+    deletePost(match.params.id, user)
+      .then(() => history.push('/posts'))
+      .then(() => {
+        msgAlert({
+          heading: 'Deleted post successfully',
+          message: 'Post deleted',
+          variant: 'success'
+        })
+      })
+      .catch((error) => {
+        msgAlert({
+          heading: 'Failed to delete post!',
+          message: 'Delete error: ' + error.message,
+          variant: 'danger'
+        })
+      })
+  }
 
-	handleDeleteComment = (commentId) => {
-	  const { match, user, msgAlert, history } = this.props
+  handleDeleteComment = (commentId) => {
+    const { match, user, msgAlert, history } = this.props
 
-	  deleteComment(match.params.id, commentId, user)
-	    .then(() => history.push('/posts'))
-	    .then(() => {
-	      msgAlert({
-	        heading: 'Deleted comment successfully',
-	        message: 'Comment deleted',
-	        variant: 'success'
-	      })
-	    })
-	    .catch((error) => {
-	      msgAlert({
-	        heading: 'Failed to delete comment!',
-	        message: 'Comment delete error: ' + error.message,
-	        variant: 'danger'
-	      })
-	    })
-	}
+    deleteComment(match.params.id, commentId, user)
+      .then(() => history.push('/posts'))
+      .then(() => {
+        msgAlert({
+          heading: 'Deleted comment successfully',
+          message: 'Comment deleted',
+          variant: 'success'
+        })
+      })
+      .catch((error) => {
+        msgAlert({
+          heading: 'Failed to delete comment!',
+          message: 'Comment delete error: ' + error.message,
+          variant: 'danger'
+        })
+      })
+  }
 
-	render () {
-	  if (this.state.post === null) {
-	    return 'Loading...'
-	  }
+  render () {
+    if (this.state.post === null) {
+      return 'Loading...'
+    }
 
-	  const { title, text, date, comments, owner } = this.state.post
-	  const { user, history, match } = this.props
+    const { title, text, date, comments, owner } = this.state.post
+    const { user, history, match } = this.props
 
-	  const commentStyles = {
-	    border: '3px solid black',
-	    margin: '5px auto',
-	    'border-radius': '10px',
-	    'border-color': 'grey',
-	    'text-align': 'left',
-	    width: '80%',
-	    'align-self': 'center',
-	    'padding-left': '10px'
-	  }
-	  const postStyles = {
-	    border: '2px solid black',
-	    'margin-top': '15px',
-	    'border-radius': '10px',
-	    'border-color': 'grey',
-	    'text-align': 'center',
-	    'align-content': 'center',
-	    padding: '10px',
-	    'font-family': 'Times New Roman, Times, serif'
-	  }
-	  const commentSpanStyle = {
-	    'font-size': '10px'
-	  }
-	  const titleSpanStyle = {
-	    'font-size': '15px'
-	  }
-	  const buttonStyle = {
-	    margin: '4px'
-	  }
-	  const commentsJSX = []
-	  for (let i = 0; i < comments.length; i++) {
-	    console.log(comments[i])
-	    commentsJSX.push(
-	      <div style={commentStyles}>
-	        <h6>
-	          {comments[i].title}{' '}
-	          <span style={commentSpanStyle}>by: {comments[i]?.username}</span>
-	        </h6>
-	        <p>{comments[i].content}</p>
+    const commentStyles = {
+      border: '3px solid black',
+      margin: '5px auto',
+      'border-radius': '10px',
+      'border-color': 'grey',
+      'text-align': 'left',
+      width: '80%',
+      'align-self': 'center',
+      'padding-left': '10px'
+    }
+    const postStyles = {
+      border: '2px solid black',
+      'margin-top': '15px',
+      'border-radius': '10px',
+      'border-color': 'grey',
+      'text-align': 'center',
+      'align-content': 'center',
+      padding: '10px',
+      'font-family': 'Times New Roman, Times, serif'
+    }
+    const commentSpanStyle = {
+      'font-size': '10px'
+    }
+    const titleSpanStyle = {
+      'font-size': '15px'
+    }
+    const buttonStyle = {
+      margin: '4px'
+    }
+    const commentsJSX = []
 
-	        <Button
-	          style={buttonStyle}
-	          onClick={() => this.handleDeleteComment(comments[i]._id)}>
-						Delete Comment
-	        </Button>
-	      </div>
-	    )
-	  }
-
-	  return (
-	    <div style={postStyles}>
-	      <h4>
-	        <span style={{ 'text-decoration': 'underline' }}>{title}</span> <br />{' '}
-	        <span style={titleSpanStyle}>by: {owner.username}</span>
-	      </h4>
-	      <p>{text}</p>
-	      <h6>{date.slice(0, 10)}</h6>
-
-	      {user._id === owner._id && (
-	        <>
-	          <Button style={buttonStyle} onClick={this.handleDelete}>
-							Delete Post
-	          </Button>
-	          <Button
-	            style={buttonStyle}
-	            onClick={() => history.push(`/posts/${match.params.id}/edit`)}>
-							Update Post
-	          </Button>
-	        </>
-	      )}
-	      <Button
-	        style={buttonStyle}
-	        onClick={() =>
-	          history.push(`/posts/${match.params.id}/create-comment`)
-	        }>
-					Add Comment
-	      </Button>
-	      <Button
-	        onClick={() =>
-	          history.push(
-	            `/posts/${match.params.id}/comments/${match.params.commentId}/edit`
-	          )
-	        }>
+    for (let i = 0; i < comments.length; i++) {
+      if (user._id === comments[i].owner) {
+        commentsJSX.push(
+          <div style={commentStyles}>
+            <h6>
+              {comments[i].title}{' '}
+              <span style={commentSpanStyle}>by: {comments[i]?.username}</span>
+            </h6>
+            <p>{comments[i].content}</p>
+            <Button
+              style={buttonStyle}
+              onClick={() => this.handleDeleteComment(comments[i]._id)}>
+              Delete Comment
+            </Button>
+            <Button
+              onClick={() =>
+                history.push(
+                  `/posts/${match.params.id}/comments/${comments[i]._id}/edit`
+                )
+              }>
 					Update Comment
-	      </Button>
-	      <h3>Comments:</h3>
-	      {commentsJSX}
-	    </div>
-	  )
-	}
+            </Button>
+          </div>
+        )
+      } else {
+        commentsJSX.push(
+          <div style={commentStyles}>
+            <h6>
+              {comments[i].title}{' '}
+              <span style={commentSpanStyle}>by: {comments[i]?.username}</span>
+            </h6>
+            <p>{comments[i].content}</p>
+          </div>
+        )
+      }
+    }
+
+    return (
+      <div style={postStyles}>
+        <h4>
+          <span style={{ 'text-decoration': 'underline' }}>{title}</span> <br />{' '}
+          <span style={titleSpanStyle}>by: {owner.username}</span>
+        </h4>
+        <p>{text}</p>
+        <h6>{date.slice(0, 10)}</h6>
+
+        {user._id === owner._id && (
+          <>
+            <Button style={buttonStyle} onClick={this.handleDelete}>
+              Delete Post
+            </Button>
+            <Button
+              style={buttonStyle}
+              onClick={() => history.push(`/posts/${match.params.id}/edit`)}>
+              Update Post
+            </Button>
+          </>
+        )}
+        <Button
+          style={buttonStyle}
+          onClick={() =>
+            history.push(`/posts/${match.params.id}/create-comment`)
+          }>
+          Add Comment
+        </Button>
+        <h3>Comments:</h3>
+        {commentsJSX}
+      </div>
+    )
+  }
 }
 
 export default withRouter(ShowPost)
