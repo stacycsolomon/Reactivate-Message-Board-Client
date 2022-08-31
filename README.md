@@ -5,9 +5,9 @@ Users are able to create an account, share their thoughts and ideas, get the lat
 
 ## Deployed Application
 
-[Link](https://reactivate-team.github.io/Reactivate-Message-Board-Client/) to deployed application
+[Link](https://stacycsolomon.github.io/Reactivate-Message-Board-Client/) to deployed application
 
-[Link](https://github.com/Reactivate-Team/Reactivate-Message-Board-API) to API repository
+[Link](https://github.com/stacycsolomon/Reactivate-Message-Board-API) to API repository
 
 ## User Stories
 * As an unregistered user, I would like to sign up with email and password.
